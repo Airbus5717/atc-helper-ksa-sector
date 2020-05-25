@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:helloworld1/warning.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 
 
 //variables
 String finalIcao;
+String finalIata;
 String finalName;
 String finalCity;
 String finalDomSqk;
@@ -27,6 +29,7 @@ void main() => runApp(MaterialApp(
 
 class AirportsList {
   String icao;
+  String iata;
   String name;
   String city;
   String domSqk;
@@ -34,15 +37,15 @@ class AirportsList {
   String vfrSqk;
   String initialClimb;
   String finalDescend;
-  AirportsList({this.name , this.icao ,this.city, this.domSqk,this.intSqk,this.vfrSqk,this.initialClimb,this.finalDescend});
+  AirportsList({this.name , this.icao ,this.iata ,this.city, this.domSqk,this.intSqk,this.vfrSqk,this.initialClimb,this.finalDescend});
 }
 
 
 List<AirportsList> airports = [
-  AirportsList(name: 'King Fahd International Airport'     ,icao: 'OEDF',city:'Dammam',domSqk: '5201-5217 \n5220-5277',intSqk: '5301-5377 \n5401-5477',vfrSqk: '1701-1707',initialClimb: '4000ft',finalDescend: '1700ft'),
-  AirportsList(name: 'King Abdulaziz International Airport',icao: 'OEJN',city:'Jeddah',domSqk: '4300-4377 \n4500-4577 \n4600-4677',intSqk: '3100-3177 \n3500-3577',vfrSqk: '0570-0577',initialClimb: '4000ft',finalDescend: '2000ft'),
-  AirportsList(name: 'King Khalid International Airport'   ,icao: 'OERK',city:'Riyadh',domSqk: '6301-6377',intSqk: '6131-6177 \n6231-6277',vfrSqk: '0371-0377',initialClimb: 'Runway 15R/L     Runway 33R/L \n4000                    6000',finalDescend: '5000ft'),
-  AirportsList(name: 'King Abdulaziz International Airport',icao: 'OEMA',city:'Madina',domSqk: '4600-4677',intSqk: '3500-3577 \n3500-3577',vfrSqk: '0570-0577',initialClimb: '8000ft',finalDescend: '6000ft'),
+  AirportsList(name: 'King Fahd International Airport'     ,icao: 'OEDF',iata: 'DMM',city:'Dammam',domSqk: '5201-5217 \n5220-5277',intSqk: '5301-5377 \n5401-5477',vfrSqk: '1701-1707',initialClimb: '4000ft',finalDescend: '1700ft'),
+  AirportsList(name: 'King Abdulaziz International Airport',icao: 'OEJN',iata: 'JED',city:'Jeddah',domSqk: '4300-4377 \n4500-4577 \n4600-4677',intSqk: '3100-3177 \n3500-3577',vfrSqk: '0570-0577',initialClimb: '4000ft',finalDescend: '2000ft'),
+  AirportsList(name: 'King Khalid International Airport'   ,icao: 'OERK',iata: 'RUH',city:'Riyadh',domSqk: '6301-6377',intSqk: '6131-6177 \n6231-6277',vfrSqk: '0371-0377',initialClimb: 'Runway 15R/L     Runway 33R/L \n4000                    6000',finalDescend: '5000ft'),
+  AirportsList(name: 'King Abdulaziz International Airport',icao: 'OEMA',iata: 'MED',city:'Madina',domSqk: '4600-4677',intSqk: '3500-3577 \n3500-3577',vfrSqk: '0570-0577',initialClimb: '8000ft',finalDescend: '6000ft'),
 ];
 
 
@@ -54,7 +57,7 @@ class MyApp extends StatelessWidget {
       title: 'KSA ATC Helper',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('KSA  ATC'),
+          title: Text('KSA ATC Helper'),
           backgroundColor: Colors.green[900],
           elevation: 0,
           centerTitle: true,
@@ -85,6 +88,7 @@ class MyApp extends StatelessWidget {
                         
                         //print(airports[index].icao + ' ' + '$index' + ' ' + airports[index].initialClimb);
                         finalIcao = airports[index].icao;
+                        finalIata = airports[index].iata;
                         finalName = airports[index].name;
                         finalCity = airports[index].city;
                         finalDomSqk = airports[index].domSqk;
@@ -92,6 +96,7 @@ class MyApp extends StatelessWidget {
                         finalVfrSqk = airports[index].vfrSqk;
                         finalInitialClimb= airports[index].initialClimb;
                         finalFinalDescend = airports[index].finalDescend;
+                        
                         
                          
                          Navigator.push(
@@ -115,6 +120,24 @@ class MyApp extends StatelessWidget {
             
           ),
         ),
+        bottomNavigationBar: CurvedNavigationBar(
+          color: Colors.green[900],
+          backgroundColor: Colors.black,
+          buttonBackgroundColor: Colors.blue[900],
+          height: 60,
+          index: 1,
+          animationDuration: Duration(
+            milliseconds:200,
+          ),
+          animationCurve: Curves.bounceInOut,
+          items: <Widget>[
+          Icon(Icons.flight_land,size:30,color:Colors.white),
+          Icon(Icons.flight_takeoff,size:30,color:Colors.white)
+          ],
+          onTap: (index) {
+            print('NavBar Button Pressed at $index');
+          },
+        ),
       ),
     );
   }
@@ -135,7 +158,7 @@ class _AirportState extends State<Airport> {
     return Scaffold(
       backgroundColor: Colors.green,
       appBar: AppBar(
-        title: Text(finalCity),
+        title: Text(finalIata),
         centerTitle: true,
         backgroundColor: Colors.blue[900],
       ),
