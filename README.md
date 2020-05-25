@@ -6,4 +6,4 @@ open the folder <code>atc-helper</code> in Vscode
 then thru the terminal 
 write 
 
-<code>flutter build windows(or whatever system you are using)</code>
+<code>flutter build windows</code> (or whatever system you are using :Macos/linux)
