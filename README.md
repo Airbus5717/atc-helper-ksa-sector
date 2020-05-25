@@ -2,7 +2,7 @@
  flutter desktop project
 
 ## to build the project 
-open the folder in Vscode 
+open the folder <code>atc-helper</code> in Vscode 
 then thru the terminal 
 write 
 
