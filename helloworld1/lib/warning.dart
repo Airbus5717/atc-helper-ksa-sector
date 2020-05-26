@@ -20,7 +20,7 @@ class _WarningState extends State<Warning> {
         child: Center(
           child: Text(' This is for flight simulation only \nNOT to be used for real operations',style: TextStyle(
             color:Colors.white,
-            fontSize: 20,
+            fontSize: 40,
             ),
           ),
         ),
